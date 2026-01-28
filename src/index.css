@@ -73,6 +73,10 @@
   :root {
     --bg-color: #ffffff;
     --text-color: #111827;
+    --text-secondary: #374151;
+    /* gray-700 */
+    --text-muted: #4b5563;
+    /* gray-600 */
     --card-bg: rgba(0, 0, 0, 0.03);
     --border-color: rgba(0, 0, 0, 0.08);
     --selection-bg: rgba(99, 102, 241, 0.2);
@@ -84,6 +88,10 @@
   .dark {
     --bg-color: #030712;
     --text-color: #f9fafb;
+    --text-secondary: #d1d5db;
+    /* gray-300 */
+    --text-muted: #9ca3af;
+    /* gray-400 */
     --card-bg: rgba(255, 255, 255, 0.03);
     --border-color: rgba(255, 255, 255, 0.1);
     --selection-bg: rgba(99, 102, 241, 0.3);

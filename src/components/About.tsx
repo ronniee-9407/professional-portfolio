@@ -47,7 +47,7 @@ const About = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         About <span className="gradient-text">Me</span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
                         Passionate developer crafting exceptional digital experiences
                     </p>
                 </motion.div>
@@ -82,17 +82,17 @@ const About = () => {
 
                     {/* Right: Content */}
                     <motion.div variants={itemVariants} className="space-y-6">
-                        <h3 className="text-3xl font-bold text-white">
+                        <h3 className="text-3xl font-bold text-gray-900 dark:text-white">
                             Building Digital Dreams into Reality
                         </h3>
 
-                        <p className="text-gray-300 leading-relaxed">
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                             I'm a passionate full-stack developer with expertise in creating elegant solutions
                             to complex problems. With a strong foundation in both frontend and backend technologies,
                             I specialize in building scalable, performant, and user-friendly applications.
                         </p>
 
-                        <p className="text-gray-300 leading-relaxed">
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                             My journey in tech has been driven by curiosity and a love for learning. I thrive on
                             challenges and am constantly exploring new technologies to stay at the forefront of
                             web development.
@@ -127,7 +127,7 @@ const About = () => {
                             <div className="text-4xl font-bold gradient-text mb-2 group-hover:scale-110 transition-transform">
                                 {stat.value}
                             </div>
-                            <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
+                            <div className="text-gray-600 dark:text-gray-400 text-sm font-medium">{stat.label}</div>
                         </motion.div>
                     ))}
                 </motion.div>

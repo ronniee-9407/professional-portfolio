@@ -110,8 +110,8 @@ const Contact = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         Get In <span className="gradient-text">Touch</span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                        Have a project in mind or just want to chat? I'd love to hear from you!
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                        Have a project in mind? Let's build something amazing together
                     </p>
                 </motion.div>
 
@@ -119,11 +119,12 @@ const Contact = () => {
                     {/* Contact Info */}
                     <motion.div variants={itemVariants} className="space-y-6">
                         <div className="glass-card p-8 rounded-2xl">
-                            <h3 className="text-2xl font-bold text-white mb-6">
-                                Let's Connect
+                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                                Contact Information
                             </h3>
-                            <p className="text-gray-300 mb-8">
-                                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                            <p className="text-gray-700 dark:text-gray-300 mb-8">
+                                Feel free to reach out through any of these channels.
+                                I'm always open to new opportunities and collaborations.
                             </p>
 
                             <div className="space-y-4">
@@ -140,10 +141,8 @@ const Contact = () => {
                                             {info.icon}
                                         </div>
                                         <div>
-                                            <div className="text-gray-400 text-sm">{info.label}</div>
-                                            <div className="text-white font-medium group-hover:text-primary-300 transition-colors">
-                                                {info.value}
-                                            </div>
+                                            <p className="text-gray-400 dark:text-gray-500 text-sm">{info.label}</p>
+                                            <p className="text-gray-900 dark:text-white font-medium">{info.value}</p>
                                         </div>
                                     </motion.a>
                                 ))}
@@ -184,8 +183,8 @@ const Contact = () => {
                     <motion.div variants={itemVariants}>
                         <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl space-y-6">
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                                    Your Name
+                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    Full Name
                                 </label>
                                 <input
                                     type="text"
@@ -200,7 +199,7 @@ const Contact = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Email Address
                                 </label>
                                 <input
@@ -216,7 +215,7 @@ const Contact = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Subject
                                 </label>
                                 <input
@@ -232,7 +231,7 @@ const Contact = () => {
                             </div>
 
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                                     Message
                                 </label>
                                 <textarea

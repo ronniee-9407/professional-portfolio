@@ -50,10 +50,10 @@ const Hero = () => {
 
                 {/* Title */}
                 <motion.div variants={itemVariants} className="mb-8">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl text-gray-300 font-semibold mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl text-gray-700 dark:text-gray-300 font-semibold mb-4">
                         Full Stack Developer & Designer
                     </h2>
-                    <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
                         I craft beautiful, functional, and user-centric digital experiences with modern technologies
                     </p>
                 </motion.div>
@@ -119,11 +119,11 @@ const Hero = () => {
                         transition={{ duration: 1.5, repeat: Infinity }}
                         className="text-gray-500"
                     >
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
                     </motion.div>
-                    <span className="text-sm text-gray-500 mt-2">Scroll to explore</span>
+                    <span className="text-sm text-gray-400 dark:text-gray-500 mt-2">Scroll to explore</span>
                 </motion.div>
             </motion.div>
         </div>

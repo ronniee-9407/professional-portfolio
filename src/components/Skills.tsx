@@ -90,7 +90,7 @@ const Skills = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         My <span className="gradient-text">Skills</span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
                         Technologies and tools I work with to bring ideas to life
                     </p>
                 </motion.div>
@@ -111,15 +111,15 @@ const Skills = () => {
                                 >
                                     {category.icon}
                                 </motion.div>
-                                <h3 className="text-2xl font-bold text-white">{category.title}</h3>
+                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{category.title}</h3>
                             </div>
 
                             <div className="space-y-4">
                                 {category.skills.map((skill, index) => (
                                     <div key={skill.name}>
                                         <div className="flex justify-between text-sm mb-2">
-                                            <span className="text-gray-300 font-medium">{skill.name}</span>
-                                            <span className="text-gray-400">{skill.level}%</span>
+                                            <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
+                                            <span className="text-gray-600 dark:text-gray-400">{skill.level}%</span>
                                         </div>
                                         <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
                                             <motion.div
@@ -142,7 +142,7 @@ const Skills = () => {
 
                 {/* Additional Skills */}
                 <motion.div variants={itemVariants} className="mt-12 text-center">
-                    <h3 className="text-xl font-semibold text-gray-300 mb-6">Also Familiar With</h3>
+                    <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-6">Also Familiar With</h3>
                     <div className="flex flex-wrap justify-center gap-3">
                         {[
                             'Jest',
@@ -158,7 +158,7 @@ const Skills = () => {
                         ].map((skill) => (
                             <motion.span
                                 key={skill}
-                                className="px-4 py-2 glass-card rounded-full text-sm font-medium text-gray-300 hover:text-white hover:border-primary-500/50 border border-white/10 transition-all"
+                                className="px-4 py-2 glass-card rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-white hover:border-primary-500/50 border border-white/10 transition-all"
                                 whileHover={{ scale: 1.1, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
                             >

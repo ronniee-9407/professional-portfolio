@@ -114,7 +114,7 @@ const Projects = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         Featured <span className="gradient-text">Projects</span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto mb-8">
                         A showcase of my recent work and side projects
                     </p>
 
@@ -187,10 +187,10 @@ const Projects = () => {
 
                             {/* Project Details */}
                             <div className="p-6">
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary-300 transition-colors">
+                                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-500 transition-colors">
                                     {project.title}
                                 </h3>
-                                <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                                <p className="text-gray-700 dark:text-gray-400 text-sm mb-4 line-clamp-3">
                                     {project.description}
                                 </p>
 

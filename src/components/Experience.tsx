@@ -90,7 +90,7 @@ const Experience = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         Work <span className="gradient-text">Experience</span>
                     </h2>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
                         My professional journey and contributions
                     </p>
                 </motion.div>
@@ -134,13 +134,13 @@ const Experience = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-primary-300 transition-colors">
+                                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-500 transition-colors">
                                             {exp.position}
                                         </h3>
-                                        <div className="text-primary-400 font-semibold text-lg mb-2">
+                                        <div className="text-primary-600 dark:text-primary-400 font-semibold text-lg mb-2">
                                             {exp.company}
                                         </div>
-                                        <div className="flex flex-wrap gap-3 text-sm text-gray-400 mb-2">
+                                        <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400 mb-2">
                                             <span className="flex items-center gap-1">
                                                 📅 {exp.duration}
                                             </span>
@@ -152,8 +152,8 @@ const Experience = () => {
 
                                     <ul className={`space-y-2 mb-4 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                                         {exp.description.map((item, i) => (
-                                            <li key={i} className="text-gray-300 text-sm flex items-start gap-2">
-                                                <span className="text-primary-400 mt-1">▸</span>
+                                            <li key={i} className="text-gray-700 dark:text-gray-300 text-sm flex items-start gap-2">
+                                                <span className="text-primary-500 mt-1">▸</span>
                                                 <span className="flex-1">{item}</span>
                                             </li>
                                         ))}
