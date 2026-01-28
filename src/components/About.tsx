@@ -117,7 +117,7 @@ const About = () => {
                     variants={containerVariants}
                     className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
                 >
-                    {stats.map((stat, index) => (
+                    {stats.map((stat) => (
                         <motion.div
                             key={stat.label}
                             variants={itemVariants}
