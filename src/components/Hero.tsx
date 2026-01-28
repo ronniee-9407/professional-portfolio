@@ -34,7 +34,7 @@ const Hero = () => {
             >
                 {/* Greeting */}
                 <motion.div variants={itemVariants} className="mb-6">
-                    <span className="inline-block px-4 py-2 glass-card text-primary-400 font-medium rounded-full text-sm">
+                    <span className="inline-block px-4 py-2 glass-card text-primary-600 dark:text-primary-400 font-medium rounded-full text-sm">
                         👋 Welcome to my portfolio
                     </span>
                 </motion.div>

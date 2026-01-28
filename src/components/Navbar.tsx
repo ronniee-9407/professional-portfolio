@@ -84,8 +84,8 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                                     key={item.id}
                                     onClick={() => scrollToSection(item.id)}
                                     className={`px-4 py-2 rounded-full font-medium transition-all duration-300 relative ${activeSection === item.id
-                                        ? 'text-primary-500 dark:text-white'
-                                        : 'text-gray-500 dark:text-gray-400 hover:text-primary-500 dark:hover:text-white'
+                                        ? 'text-primary-600 dark:text-white'
+                                        : 'text-gray-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white'
                                         }`}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}

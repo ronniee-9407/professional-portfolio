@@ -126,7 +126,7 @@ const Projects = () => {
                                 onClick={() => setFilter(f.id)}
                                 className={`px-6 py-2 rounded-full font-medium transition-all ${filter === f.id
                                     ? 'bg-gradient-to-r from-primary-500 to-accent-500 text-white shadow-lg'
-                                    : 'glass-card text-gray-300 hover:text-white hover:bg-white/10'
+                                    : 'glass-card text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10'
                                     }`}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -199,7 +199,7 @@ const Projects = () => {
                                     {project.tags.map((tag) => (
                                         <span
                                             key={tag}
-                                            className="px-3 py-1 bg-primary-500/10 text-primary-300 text-xs rounded-full border border-primary-500/30"
+                                            className="px-3 py-1 bg-primary-500/10 text-primary-600 dark:text-primary-300 text-xs rounded-full border border-primary-500/30"
                                         >
                                             {tag}
                                         </span>
