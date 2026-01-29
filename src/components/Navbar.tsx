@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 interface NavbarProps {
@@ -8,6 +8,7 @@ interface NavbarProps {
 const Navbar = ({ activeSection }: NavbarProps) => {
     const [scrolled, setScrolled] = useState(false);
     const [isDark, setIsDark] = useState(true);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navItems = [
         { id: 'home', label: 'Home' },
@@ -62,7 +63,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
         <motion.nav
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'glass-card border-b border-white/10 shadow-lg' : ''}`}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled || isMenuOpen ? 'glass-card border-b border-slate-200 dark:border-white/10 shadow-lg' : ''}`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
@@ -71,7 +72,10 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                         className="text-2xl font-display font-bold gradient-text cursor-pointer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => scrollToSection('home')}
+                        onClick={() => {
+                            scrollToSection('home');
+                            setIsMenuOpen(false);
+                        }}
                     >
                         Portfolio
                     </motion.div>
@@ -85,7 +89,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                                     onClick={() => scrollToSection(item.id)}
                                     className={`px-4 py-2 rounded-full font-medium transition-all duration-300 relative ${activeSection === item.id
                                         ? 'text-primary-600 dark:text-white'
-                                        : 'text-gray-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white'
+                                        : 'text-slate-700 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white'
                                         }`}
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
@@ -105,7 +109,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                         {/* Theme Toggle */}
                         <motion.button
                             onClick={toggleTheme}
-                            className="p-2 rounded-full glass-card hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                            className="p-2 rounded-full glass-card hover:bg-black/5 dark:hover:bg-white/5 transition-colors border border-slate-200 dark:border-white/10"
                             whileHover={{ scale: 1.1, rotate: 180 }}
                             whileTap={{ scale: 0.9 }}
                             aria-label="Toggle Theme"
@@ -126,23 +130,62 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                     <div className="flex items-center space-x-2 md:hidden">
                         <motion.button
                             onClick={toggleTheme}
-                            className="p-2 rounded-lg glass-card"
+                            className="p-2 rounded-lg glass-card border border-slate-200 dark:border-white/10"
                             whileTap={{ scale: 0.9 }}
                         >
                             {isDark ? "☀️" : "🌙"}
                         </motion.button>
                         <motion.button
-                            className="p-2 rounded-lg glass-card"
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className="p-2 rounded-lg glass-card border border-slate-200 dark:border-white/10"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <svg className="w-6 h-6 outline-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
+                            {isMenuOpen ? (
+                                <svg className="w-6 h-6 outline-none text-slate-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            ) : (
+                                <svg className="w-6 h-6 outline-none text-slate-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            )}
                         </motion.button>
                     </div>
                 </div>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="md:hidden glass-card border-t border-slate-200 dark:border-white/10 overflow-hidden"
+                    >
+                        <div className="flex flex-col p-4 space-y-2">
+                            {navItems.map((item) => (
+                                <motion.button
+                                    key={item.id}
+                                    onClick={() => {
+                                        scrollToSection(item.id);
+                                        setIsMenuOpen(false);
+                                    }}
+                                    className={`px-4 py-3 rounded-xl font-medium text-left transition-all ${activeSection === item.id
+                                        ? 'bg-primary-500/10 text-primary-600 dark:text-white'
+                                        : 'text-slate-700 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5'
+                                        }`}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    {item.label}
+                                </motion.button>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.nav>
     );
 };
