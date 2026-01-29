@@ -3,9 +3,21 @@ import { useRef } from 'react';
 
 const Skills = () => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '-100px' });
+    const isInView = useInView(ref, { once: true, margin: '-50px' });
 
-    const skillCategories = [
+    interface Skill {
+        name: string;
+        level: number;
+    }
+
+    interface SkillCategory {
+        title: string;
+        icon: string;
+        color: string;
+        skills: Skill[];
+    }
+
+    const skillCategories: SkillCategory[] = [
         {
             title: 'Frontend',
             icon: '🎨',
@@ -74,12 +86,13 @@ const Skills = () => {
             transition: {
                 type: 'spring',
                 stiffness: 100,
+                damping: 20,
             },
         },
     } as const;
 
     return (
-        <div className="section-container bg-gray-900/30" ref={ref}>
+        <div className="section-container bg-slate-500/5 dark:bg-gray-900/30" ref={ref}>
             <motion.div
                 className="max-w-7xl mx-auto"
                 variants={containerVariants}
@@ -90,45 +103,45 @@ const Skills = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         My <span className="gradient-text">Skills</span>
                     </h2>
-                    <p className="text-gray-700 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-slate-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
                         Technologies and tools I work with to bring ideas to life
                     </p>
                 </motion.div>
 
                 <div className="grid md:grid-cols-2 gap-8">
-                    {skillCategories.map((category, catIndex) => (
+                    {skillCategories.map((category: SkillCategory) => (
                         <motion.div
                             key={category.title}
                             variants={itemVariants}
-                            className="glass-card p-8 rounded-2xl hover:bg-white/10 transition-all group"
-                            whileHover={{ scale: 1.02, y: -5 }}
+                            className="glass-card p-8 rounded-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-all group"
+                            whileHover={{ scale: 1.01, y: -2 }}
                         >
                             <div className="flex items-center gap-4 mb-6">
                                 <motion.div
                                     className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${category.color} flex items-center justify-center text-3xl`}
-                                    whileHover={{ rotate: 360 }}
+                                    whileHover={{ rotate: 360, scale: 1.1 }}
                                     transition={{ duration: 0.5 }}
                                 >
                                     {category.icon}
                                 </motion.div>
-                                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{category.title}</h3>
+                                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{category.title}</h3>
                             </div>
 
                             <div className="space-y-4">
-                                {category.skills.map((skill, index) => (
+                                {category.skills.map((skill: Skill, index: number) => (
                                     <div key={skill.name}>
                                         <div className="flex justify-between text-sm mb-2">
-                                            <span className="text-gray-800 dark:text-gray-300 font-medium">{skill.name}</span>
-                                            <span className="text-gray-600 dark:text-gray-400 font-semibold">{skill.level}%</span>
+                                            <span className="text-slate-800 dark:text-gray-300 font-medium">{skill.name}</span>
+                                            <span className="text-slate-600 dark:text-gray-400 font-semibold">{skill.level}%</span>
                                         </div>
-                                        <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                        <div className="h-2 bg-slate-200 dark:bg-gray-800 rounded-full overflow-hidden">
                                             <motion.div
                                                 className={`h-full bg-gradient-to-r ${category.color} rounded-full`}
                                                 initial={{ width: 0 }}
                                                 animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
                                                 transition={{
                                                     duration: 1,
-                                                    delay: catIndex * 0.1 + index * 0.1,
+                                                    delay: index * 0.05,
                                                     ease: 'easeOut',
                                                 }}
                                             />

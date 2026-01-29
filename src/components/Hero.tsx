@@ -50,10 +50,10 @@ const Hero = () => {
 
                 {/* Title */}
                 <motion.div variants={itemVariants} className="mb-8">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl text-gray-700 dark:text-gray-300 font-semibold mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl text-slate-800 dark:text-gray-200 font-semibold mb-4 text-balance">
                         Full Stack Developer & Designer
                     </h2>
-                    <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-lg sm:text-xl text-slate-600 dark:text-gray-400 max-w-2xl mx-auto text-balance">
                         I craft beautiful, functional, and user-centric digital experiences with modern technologies
                     </p>
                 </motion.div>
@@ -99,7 +99,7 @@ const Hero = () => {
                         <motion.a
                             key={social.name}
                             href={social.href}
-                            className="w-12 h-12 glass-card rounded-full flex items-center justify-center text-2xl hover:bg-white/10 transition-colors"
+                            className="w-12 h-12 glass-card rounded-full flex items-center justify-center text-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
                             whileHover={{ scale: 1.1, rotate: 5 }}
                             whileTap={{ scale: 0.9 }}
                             title={social.name}
@@ -116,14 +116,14 @@ const Hero = () => {
                 >
                     <motion.div
                         animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="text-gray-500"
+                        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                        className="text-slate-400 dark:text-gray-500"
                     >
-                        <svg className="w-6 h-6 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                         </svg>
                     </motion.div>
-                    <span className="text-sm text-gray-400 dark:text-gray-500 mt-2">Scroll to explore</span>
+                    <span className="text-sm text-slate-500 dark:text-gray-500 mt-2 font-medium">Scroll to explore</span>
                 </motion.div>
             </motion.div>
         </div>

@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from 'react';
 
 const Contact = () => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '-100px' });
+    const isInView = useInView(ref, { once: true, margin: '-50px' });
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -11,7 +11,7 @@ const Contact = () => {
         message: '',
     });
     const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-    const timeoutsRef = useRef<any[]>([]);
+    const timeoutsRef = useRef<number[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
@@ -25,11 +25,11 @@ const Contact = () => {
         setStatus('sending');
 
         // Capture timeout IDs for cleanup
-        const successTimeout = setTimeout(() => {
+        const successTimeout = window.setTimeout(() => {
             setStatus('success');
             setFormData({ name: '', email: '', subject: '', message: '' });
 
-            const idleTimeout = setTimeout(() => {
+            const idleTimeout = window.setTimeout(() => {
                 setStatus('idle');
             }, 3000);
 
@@ -39,9 +39,9 @@ const Contact = () => {
 
     // Robust cleanup to prevent memory leaks
     useEffect(() => {
+        const refs = timeoutsRef.current;
         return () => {
-            timeoutsRef.current.forEach(t => clearTimeout(t));
-            timeoutsRef.current = [];
+            refs.forEach(t => clearTimeout(t));
         };
     }, []);
 
@@ -94,6 +94,7 @@ const Contact = () => {
             transition: {
                 type: 'spring',
                 stiffness: 100,
+                damping: 20,
             },
         },
     } as const;
@@ -110,7 +111,7 @@ const Contact = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         Get In <span className="gradient-text">Touch</span>
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-slate-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
                         Have a project in mind? Let's build something amazing together
                     </p>
                 </motion.div>
@@ -119,10 +120,10 @@ const Contact = () => {
                     {/* Contact Info */}
                     <motion.div variants={itemVariants} className="space-y-6">
                         <div className="glass-card p-8 rounded-2xl">
-                            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                            <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
                                 Contact Information
                             </h3>
-                            <p className="text-gray-700 dark:text-gray-300 mb-8">
+                            <p className="text-slate-600 dark:text-gray-300 mb-8">
                                 Feel free to reach out through any of these channels.
                                 I'm always open to new opportunities and collaborations.
                             </p>
@@ -132,7 +133,7 @@ const Contact = () => {
                                     <motion.a
                                         key={info.label}
                                         href={info.href}
-                                        className="flex items-center gap-4 p-4 rounded-xl hover:bg-white/5 transition-all group"
+                                        className="flex items-center gap-4 p-4 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-all group border border-transparent hover:border-slate-200 dark:hover:border-white/10"
                                         whileHover={{ x: 10, scale: 1.02 }}
                                     >
                                         <div
@@ -141,8 +142,8 @@ const Contact = () => {
                                             {info.icon}
                                         </div>
                                         <div>
-                                            <p className="text-gray-400 dark:text-gray-500 text-sm">{info.label}</p>
-                                            <p className="text-gray-900 dark:text-white font-medium">{info.value}</p>
+                                            <p className="text-slate-500 dark:text-gray-500 text-sm font-medium">{info.label}</p>
+                                            <p className="text-slate-900 dark:text-white font-semibold">{info.value}</p>
                                         </div>
                                     </motion.a>
                                 ))}
@@ -154,7 +155,7 @@ const Contact = () => {
                             variants={itemVariants}
                             className="glass-card p-8 rounded-2xl"
                         >
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                                 Follow Me
                             </h3>
                             <div className="flex gap-4">
@@ -167,7 +168,7 @@ const Contact = () => {
                                     <motion.a
                                         key={social.name}
                                         href={social.href}
-                                        className="w-14 h-14 glass-card rounded-xl flex items-center justify-center text-2xl hover:bg-white/10 transition-colors"
+                                        className="w-14 h-14 glass-card rounded-xl flex items-center justify-center text-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-colors border border-slate-200 dark:border-white/10"
                                         whileHover={{ scale: 1.1, rotate: 5 }}
                                         whileTap={{ scale: 0.9 }}
                                         title={social.name}
@@ -183,7 +184,7 @@ const Contact = () => {
                     <motion.div variants={itemVariants}>
                         <form onSubmit={handleSubmit} className="glass-card p-8 rounded-2xl space-y-6">
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label htmlFor="name" className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-2">
                                     Full Name
                                 </label>
                                 <input
@@ -193,13 +194,13 @@ const Contact = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-black/10 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-slate-200 dark:border-white/10 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all font-medium"
                                     placeholder="John Doe"
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label htmlFor="email" className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-2">
                                     Email Address
                                 </label>
                                 <input
@@ -209,13 +210,13 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-black/10 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-slate-200 dark:border-white/10 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all font-medium"
                                     placeholder="john@example.com"
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label htmlFor="subject" className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-2">
                                     Subject
                                 </label>
                                 <input
@@ -225,13 +226,13 @@ const Contact = () => {
                                     value={formData.subject}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-black/10 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
+                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-slate-200 dark:border-white/10 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all font-medium"
                                     placeholder="Project Inquiry"
                                 />
                             </div>
 
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                <label htmlFor="message" className="block text-sm font-semibold text-slate-700 dark:text-gray-300 mb-2">
                                     Message
                                 </label>
                                 <textarea
@@ -241,7 +242,7 @@ const Contact = () => {
                                     onChange={handleChange}
                                     required
                                     rows={5}
-                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-black/10 dark:border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors resize-none"
+                                    className="w-full px-4 py-3 bg-white/50 dark:bg-gray-900/50 border border-slate-200 dark:border-white/10 rounded-lg text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all font-medium resize-none"
                                     placeholder="Tell me about your project..."
                                 />
                             </div>
@@ -266,9 +267,9 @@ const Contact = () => {
                 {/* Footer */}
                 <motion.div
                     variants={itemVariants}
-                    className="text-center mt-16 pt-8 border-t border-white/10"
+                    className="text-center mt-16 pt-8 border-t border-slate-200 dark:border-white/10"
                 >
-                    <p className="text-gray-400">
+                    <p className="text-slate-500 dark:text-gray-400 font-medium">
                         © 2024 Your Name. Built with ❤️ using React, Vite, TailwindCSS & Framer Motion
                     </p>
                 </motion.div>

@@ -3,9 +3,21 @@ import { useRef } from 'react';
 
 const Experience = () => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '-100px' });
+    const isInView = useInView(ref, { once: true, margin: '-50px' });
 
-    const experiences = [
+    interface ExperienceItem {
+        id: number;
+        company: string;
+        position: string;
+        duration: string;
+        location: string;
+        description: string[];
+        technologies: string[];
+        icon: string;
+        color: string;
+    }
+
+    const experiences: ExperienceItem[] = [
         {
             id: 1,
             company: 'Tech Innovators Inc.',
@@ -61,25 +73,26 @@ const Experience = () => {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.2,
+                staggerChildren: 0.15,
             },
         },
     } as const;
 
     const itemVariants = {
-        hidden: { x: -50, opacity: 0 },
+        hidden: { x: -30, opacity: 0 },
         visible: {
             x: 0,
             opacity: 1,
             transition: {
                 type: 'spring',
                 stiffness: 100,
+                damping: 20,
             },
         },
     } as const;
 
     return (
-        <div className="section-container bg-gray-900/30" ref={ref}>
+        <div className="section-container bg-slate-500/5 dark:bg-gray-900/30" ref={ref}>
             <motion.div
                 className="max-w-6xl mx-auto"
                 variants={containerVariants}
@@ -90,17 +103,17 @@ const Experience = () => {
                     <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold mb-4">
                         Work <span className="gradient-text">Experience</span>
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-slate-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
                         My professional journey and contributions
                     </p>
                 </motion.div>
 
                 <div className="relative">
                     {/* Timeline Line */}
-                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-accent-500 to-primary-500 hidden md:block" />
+                    <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 via-accent-500 to-primary-500 hidden md:block opacity-30 dark:opacity-50" />
 
                     <div className="space-y-12">
-                        {experiences.map((exp, index) => (
+                        {experiences.map((exp: ExperienceItem, index: number) => (
                             <motion.div
                                 key={exp.id}
                                 variants={itemVariants}
@@ -111,7 +124,7 @@ const Experience = () => {
                                 <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 hidden md:block">
                                     <motion.div
                                         className={`w-16 h-16 rounded-full bg-gradient-to-br ${exp.color} flex items-center justify-center text-2xl shadow-lg`}
-                                        whileHover={{ scale: 1.2, rotate: 360 }}
+                                        whileHover={{ scale: 1.1, rotate: 10 }}
                                         transition={{ type: 'spring', stiffness: 200 }}
                                     >
                                         {exp.icon}
@@ -120,9 +133,9 @@ const Experience = () => {
 
                                 {/* Content Card */}
                                 <motion.div
-                                    className={`md:w-[calc(50%-4rem)] glass-card p-6 md:p-8 rounded-2xl hover:bg-white/10 transition-all group ${index % 2 === 0 ? 'md:text-right' : ''
+                                    className={`md:w-[calc(50%-4rem)] glass-card p-6 md:p-8 rounded-2xl hover:bg-black/5 dark:hover:bg-white/10 transition-all group ${index % 2 === 0 ? 'md:text-right' : ''
                                         }`}
-                                    whileHover={{ scale: 1.02, y: -5 }}
+                                    whileHover={{ scale: 1.01, y: -2 }}
                                 >
                                     {/* Mobile Icon */}
                                     <div className="md:hidden mb-4">
@@ -134,13 +147,13 @@ const Experience = () => {
                                     </div>
 
                                     <div className="mb-4">
-                                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-primary-500 transition-colors">
+                                        <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                                             {exp.position}
                                         </h3>
-                                        <div className="text-primary-600 dark:text-primary-400 font-semibold text-lg mb-2">
+                                        <div className="text-primary-700 dark:text-primary-400 font-semibold text-lg mb-2">
                                             {exp.company}
                                         </div>
-                                        <div className="flex flex-wrap gap-3 text-sm text-gray-600 dark:text-gray-400 mb-2">
+                                        <div className="flex flex-wrap gap-3 text-sm text-slate-500 dark:text-gray-400 mb-2">
                                             <span className="flex items-center gap-1">
                                                 📅 {exp.duration}
                                             </span>
@@ -151,8 +164,8 @@ const Experience = () => {
                                     </div>
 
                                     <ul className={`space-y-2 mb-4 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                                        {exp.description.map((item, i) => (
-                                            <li key={i} className="text-gray-700 dark:text-gray-300 text-sm flex items-start gap-2">
+                                        {exp.description.map((item: string, i: number) => (
+                                            <li key={i} className="text-slate-600 dark:text-gray-300 text-sm flex items-start gap-2">
                                                 <span className="text-primary-500 mt-1">▸</span>
                                                 <span className="flex-1">{item}</span>
                                             </li>
@@ -160,10 +173,10 @@ const Experience = () => {
                                     </ul>
 
                                     <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                                        {exp.technologies.map((tech) => (
+                                        {exp.technologies.map((tech: string) => (
                                             <span
                                                 key={tech}
-                                                className="px-3 py-1 bg-primary-500/10 text-primary-300 text-xs rounded-full border border-primary-500/30"
+                                                className="px-3 py-1 bg-primary-500/10 text-primary-700 dark:text-primary-300 text-xs rounded-full border border-primary-500/20"
                                             >
                                                 {tech}
                                             </span>

@@ -14,50 +14,57 @@ function App() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
-      const scrollPosition = window.scrollY + window.innerHeight / 2;
+    const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
 
-      sections.forEach((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-          }
+    const observerOptions = {
+      root: null,
+      rootMargin: '-50% 0px',
+      threshold: 0,
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
         }
       });
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   return (
     <ErrorBoundary>
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden selection:bg-primary-500/30">
         {/* Animated Background Elements */}
-        <div className="fixed inset-0 -z-10">
+        <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
           <motion.div
-            className="absolute top-20 left-10 w-72 h-72 bg-primary-500/20 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-48 md:w-72 h-48 md:h-72 bg-primary-500/10 md:bg-primary-500/20 rounded-full blur-2xl md:blur-3xl"
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
+              scale: [1, 1.1, 1],
+              opacity: [0.2, 0.4, 0.2],
             }}
             transition={{
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
           <motion.div
-            className="absolute bottom-20 right-10 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl"
+            className="absolute bottom-20 right-10 w-64 md:w-96 h-64 md:h-96 bg-accent-500/10 md:bg-accent-500/20 rounded-full blur-2xl md:blur-3xl"
             animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.3, 0.5, 0.3],
+              scale: [1.1, 1, 1.1],
+              opacity: [0.2, 0.4, 0.2],
             }}
             transition={{
-              duration: 8,
+              duration: 10,
               repeat: Infinity,
               ease: "easeInOut"
             }}
