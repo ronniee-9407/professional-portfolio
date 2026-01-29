@@ -21,7 +21,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
 
     // Handle Scroll
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 50);
+        const handleScroll = () => setScrolled(window.scrollY > 30);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -53,6 +53,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
     };
 
     const scrollToSection = (id: string) => {
+        console.log('Scrolling to section:', id);
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });

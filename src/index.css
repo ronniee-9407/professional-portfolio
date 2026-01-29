@@ -134,8 +134,8 @@
   /* Optimize glass cards for mobile - reduce blur which is expensive */
   @media (max-width: 768px) {
     .glass-card {
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       background-color: rgba(var(--bg-color), 0.8);
     }
   }
