@@ -81,8 +81,8 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 className={`transition-all duration-300 ${scrolled || isMenuOpen
-                        ? 'glass-card border-b border-slate-200 dark:border-white/10 shadow-lg'
-                        : ''
+                    ? 'glass-card border-b border-slate-200 dark:border-white/10 shadow-lg'
+                    : ''
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -151,6 +151,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                             <motion.button
                                 onClick={toggleTheme}
                                 className="p-2 rounded-lg glass-card border border-slate-200 dark:border-white/10"
+                                style={{ borderColor: 'var(--border-color)' }}
                                 whileTap={{ scale: 0.9 }}
                             >
                                 {isDark ? "☀️" : "🌙"}
@@ -158,15 +159,16 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                             <motion.button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 className="p-2 rounded-lg glass-card border border-slate-200 dark:border-white/10"
+                                style={{ borderColor: 'var(--border-color)' }}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
                                 {isMenuOpen ? (
-                                    <svg className="w-6 h-6 outline-none text-slate-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 outline-none text-slate-900 dark:text-white" style={{ color: 'var(--text-color)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 ) : (
-                                    <svg className="w-6 h-6 outline-none text-slate-900 dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 outline-none text-slate-900 dark:text-white" style={{ color: 'var(--text-color)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                                     </svg>
                                 )}
@@ -184,6 +186,11 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                             className="md:hidden border-t border-slate-200 dark:border-white/10 overflow-hidden bg-transparent"
+                            style={{
+                                color: 'var(--text-color)',
+                                backgroundColor: 'var(--card-bg)',
+                                borderColor: 'var(--border-color)',
+                            }}
                         >
                             <div className="flex flex-col p-4 space-y-2">
                                 {navItems.map((item) => (
@@ -200,6 +207,10 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                                             ? 'bg-primary-500/10 text-primary-600 dark:text-white'
                                             : 'text-slate-700 dark:text-gray-400 hover:bg-black/5 dark:hover:bg-white/5'
                                             }`}
+                                        style={{
+                                            color: 'var(--text-color)',
+                                            borderColor: 'var(--border-color)',
+                                        }}
                                         whileTap={{ scale: 0.98 }}
                                     >
                                         {item.label}

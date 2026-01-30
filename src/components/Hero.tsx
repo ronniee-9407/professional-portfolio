@@ -50,10 +50,10 @@ const Hero = () => {
 
                 {/* Title */}
                 <motion.div variants={itemVariants} className="mb-8">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl text-slate-800 dark:text-gray-200 font-semibold mb-4 text-balance">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl text-slate-800 dark:text-gray-200 font-semibold mb-4 text-balance" style={{ color: 'var(--text-color)' }}>
                         Full Stack Developer & Designer
                     </h2>
-                    <p className="text-lg sm:text-xl text-slate-600 dark:text-gray-400 max-w-2xl mx-auto text-balance">
+                    <p className="text-lg sm:text-xl text-slate-600 dark:text-gray-400 max-w-2xl mx-auto text-balance" style={{ color: 'var(--text-color)' }}>
                         I craft beautiful, functional, and user-centric digital experiences with modern technologies
                     </p>
                 </motion.div>
