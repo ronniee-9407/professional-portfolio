@@ -136,7 +136,7 @@
     .glass-card {
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      background-color: rgba(var(--bg-color), 0.8);
+      background-color: color-mix(in srgb, var(--bg-color), transparent 15%);
     }
   }
 

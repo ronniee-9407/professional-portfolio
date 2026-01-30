@@ -164,7 +164,7 @@ const Navbar = ({ activeSection }: NavbarProps) => {
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="md:hidden glass-card border-t border-slate-200 dark:border-white/10 overflow-hidden"
+                        className="md:hidden border-t border-slate-200 dark:border-white/10 overflow-hidden bg-transparent"
                     >
                         <div className="flex flex-col p-4 space-y-2">
                             {navItems.map((item) => (
