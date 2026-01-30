@@ -42,7 +42,7 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <div className="relative overflow-hidden selection:bg-primary-500/30">
+      <div className="relative overflow-x-hidden selection:bg-primary-500/30">
         {/* Animated Background Elements */}
         <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
           <motion.div
